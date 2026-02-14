@@ -1,0 +1,42 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Passman", "Passman\Passman.csproj", "{E7392DFD-3D82-68AF-7CCE-FF95ECF628D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C075766F-95E8-4195-AEAA-AE3E1BA36093}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Passman.Cli", "src\Passman.Cli\Passman.Cli.csproj", "{EF0A329E-1536-4FD2-8D11-598770A051AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Passman.Core", "src\Passman.Core\Passman.Core.csproj", "{901D232F-AEF8-4F80-9266-DEFC95182B4A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7392DFD-3D82-68AF-7CCE-FF95ECF628D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7392DFD-3D82-68AF-7CCE-FF95ECF628D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7392DFD-3D82-68AF-7CCE-FF95ECF628D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7392DFD-3D82-68AF-7CCE-FF95ECF628D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF0A329E-1536-4FD2-8D11-598770A051AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0A329E-1536-4FD2-8D11-598770A051AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF0A329E-1536-4FD2-8D11-598770A051AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF0A329E-1536-4FD2-8D11-598770A051AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{901D232F-AEF8-4F80-9266-DEFC95182B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{901D232F-AEF8-4F80-9266-DEFC95182B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{901D232F-AEF8-4F80-9266-DEFC95182B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{901D232F-AEF8-4F80-9266-DEFC95182B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1ABE5CA2-3AFE-4B51-802F-39C89631F271}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EF0A329E-1536-4FD2-8D11-598770A051AD} = {C075766F-95E8-4195-AEAA-AE3E1BA36093}
+		{901D232F-AEF8-4F80-9266-DEFC95182B4A} = {C075766F-95E8-4195-AEAA-AE3E1BA36093}
+	EndGlobalSection
+EndGlobal
