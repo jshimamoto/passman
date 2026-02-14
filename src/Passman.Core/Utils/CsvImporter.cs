@@ -10,7 +10,7 @@ public class CsvImporter
         if (lines.Length == 0) return new List<Credential>();
 
         var results = new List<Credential>();
-        foreach (string line in lines)
+        foreach (string line in lines.Skip(1))
         {
             var parts = line.Split(",");
             if (parts.Length != 3) continue;

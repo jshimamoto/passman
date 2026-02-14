@@ -1,4 +1,6 @@
+using System.Text.Json;
 using Passman.Core.Models;
+using Passman.Core.Storage;
 using Passman.Core.Utils;
 
 namespace Passman.Cli.Commands;
@@ -8,13 +10,14 @@ public class InitCommand
 {
     private readonly string _dbPath;
 
-    public InitCommand(string dbPath = "passwords.db")
+    public InitCommand(string? dbPath = null)
     {
-        _dbPath = dbPath;
+        _dbPath = dbPath ?? DatabasePath.GetDefaultPath();
     }
 
     public void Execute(string[] args)
     {
+        Console.WriteLine(_dbPath);
         if (File.Exists(_dbPath))
         {
             Console.Write("Credential database already exists. Overwrite? [y/n]: ");
@@ -29,6 +32,7 @@ public class InitCommand
                     return;
                 }
             }
+            Console.WriteLine();
         }
 
         string? csvPath = null;
@@ -40,19 +44,35 @@ public class InitCommand
             }
         }
 
+        
+
         // var password = ReadHiddenInput("Password: ");
 
         var credentials = new List<Credential>();
         if (!string.IsNullOrWhiteSpace(csvPath))
         {
-            if (!File.Exists(csvPath))
+            if (string.IsNullOrWhiteSpace(csvPath))
             {
-                Console.WriteLine("CSV File not found");
-                return;
+                Console.WriteLine("No CSV provided. Creating empty database");
             }
+            else
+            {
+                if (!File.Exists(csvPath))
+                {
+                    Console.WriteLine("CSV File not found");
+                    return;
+                }
 
-            credentials = CsvImporter.ImportCsv(csvPath);
-            
+                credentials = CsvImporter.ImportCsv(csvPath);
+                Console.WriteLine($"Imported {credentials.Count} credentials");
+            }
         }
+
+        var json = JsonSerializer.Serialize(credentials, new JsonSerializerOptions
+        {
+            WriteIndented = true
+        });
+        File.WriteAllText(_dbPath, json);
+        Console.WriteLine($"Database initialized at {_dbPath}");
     }
 }
