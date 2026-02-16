@@ -11,7 +11,7 @@ public static class ReadHiddenInput
 
         while (true)
         {
-            var key = Console.ReadKey(intercept: false);
+            var key = Console.ReadKey(intercept: true);
 
             if (key.Key == ConsoleKey.Enter) break;
             if (key.Key == ConsoleKey.Backspace) 
@@ -22,6 +22,7 @@ public static class ReadHiddenInput
 
             sb.Append(key.Key);
         }
+        Console.WriteLine();
 
         return sb.ToString();
     }

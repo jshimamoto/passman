@@ -1,3 +1,4 @@
+using System.Text;
 using System.Text.Json;
 using Passman.Core.Models;
 using Passman.Core.Storage;
@@ -17,6 +18,16 @@ public class InitCommand
 
     public void Execute(string[] args)
     {
+
+        var pass1 = ReadHiddenInput.Execute("Set master password for database: ");
+        var pass2 = ReadHiddenInput.Execute("Confirm password: ");
+
+        if (pass1 != pass2)
+        {
+            Console.WriteLine("Passwords do not match");
+            return;
+        }
+
         Console.WriteLine(_dbPath);
         if (File.Exists(_dbPath))
         {
@@ -44,10 +55,6 @@ public class InitCommand
             }
         }
 
-        
-
-        // var password = ReadHiddenInput("Password: ");
-
         var credentials = new List<Credential>();
         if (!string.IsNullOrWhiteSpace(csvPath))
         {
@@ -72,7 +79,8 @@ public class InitCommand
         {
             WriteIndented = true
         });
-        File.WriteAllText(_dbPath, json);
+        var bytes = Encoding.UTF8.GetBytes(json);
+        DatbaseFileService.SaveFile(_dbPath, pass1, bytes);
         Console.WriteLine($"Database initialized at {_dbPath}");
     }
 }
