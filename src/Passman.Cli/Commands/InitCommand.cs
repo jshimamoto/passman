@@ -6,7 +6,6 @@ using Passman.Core.Utils;
 
 namespace Passman.Cli.Commands;
 
-
 public class InitCommand
 {
     private readonly string _dbPath;
@@ -19,8 +18,8 @@ public class InitCommand
     public void Execute(string[] args)
     {
 
-        var pass1 = ReadHiddenInput.Execute("Set master password for database: ");
-        var pass2 = ReadHiddenInput.Execute("Confirm password: ");
+        var pass1 = ReadInput.Execute("Set master password for database: ", hidden: true);
+        var pass2 = ReadInput.Execute("Confirm password: ", hidden: true);
 
         if (pass1 != pass2)
         {
@@ -28,7 +27,6 @@ public class InitCommand
             return;
         }
 
-        Console.WriteLine(_dbPath);
         if (File.Exists(_dbPath))
         {
             Console.Write("Credential database already exists. Overwrite? [y/n]: ");
@@ -75,12 +73,9 @@ public class InitCommand
             }
         }
 
-        var json = JsonSerializer.Serialize(credentials, new JsonSerializerOptions
-        {
-            WriteIndented = true
-        });
-        var bytes = Encoding.UTF8.GetBytes(json);
-        DatbaseFileService.SaveFile(_dbPath, pass1, bytes);
+        Database db = new Database();
+        db.Add(credentials);
+        DatabaseFileService.SaveFile(_dbPath, pass1, db);
         Console.WriteLine($"Database initialized at {_dbPath}");
     }
 }

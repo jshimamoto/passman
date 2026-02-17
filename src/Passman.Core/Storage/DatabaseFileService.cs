@@ -1,18 +1,23 @@
 using System.Reflection.Metadata;
+using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using Passman.Core.Crypto;
+using Passman.Core.Models;
 
 namespace Passman.Core.Storage;
 
-public static class DatbaseFileService
+public static class DatabaseFileService
 {
     private static readonly byte[] Magic = Encoding.ASCII.GetBytes("PMDB");
     private const byte Version = 1;
 
-    public static void SaveFile(string path, string masterPassword, byte[] plaintext)
+    public static void SaveFile(string path, string masterPassword, Database db)
     {
         byte[] salt = SaltGenerator.Generate();
         byte[] key = KeyDeriver.DeriveKey(masterPassword, salt);
+
+        byte[] plaintext = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(db));
 
         var (nonce, ciphertext, tag) = AesGcmService.Encrypt(plaintext, key);
 
@@ -30,7 +35,7 @@ public static class DatbaseFileService
         bw.Write(ciphertext);
     }
 
-    public static byte[] LoadFile(string path, string masterPassword)
+    public static Database LoadFile(string path, string masterPassword)
     {
         using var fs = File.OpenRead(path);
         using var br = new BinaryReader(fs);
@@ -53,6 +58,17 @@ public static class DatbaseFileService
 
         byte[] ciphertext = br.ReadBytes((int)(fs.Length - fs.Position));
 
-        return AesGcmService.Decrypt(ciphertext, key, nonce, tag);
+        byte[] decryptedBytes;
+
+        try
+        {
+            decryptedBytes = AesGcmService.Decrypt(ciphertext, key, nonce, tag);
+        }
+        catch (CryptographicException)
+        {
+            throw new Exception("Incorrect master password or corrupted database.");
+        }
+        var json = Encoding.UTF8.GetString(decryptedBytes);
+        return JsonSerializer.Deserialize<Database>(json)!;
     }
 }

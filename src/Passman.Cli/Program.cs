@@ -8,14 +8,25 @@ if (args.Length == 0)
 var commandName = args[0];
 var commandArgs = args.Skip(1).ToArray();
 
-switch (commandName)
+try
 {
-    case "init":
-        var init = new InitCommand();
-        init.Execute(commandArgs);
-        break;
-    
-    default:
-        Console.WriteLine($"Unknown command: {commandName}");
-        break;
+    switch (commandName)
+    {
+        case "init":
+            var init = new InitCommand();
+            init.Execute(commandArgs);
+            break;
+
+        case "add":
+            var add = new AddCommand();
+            add.Execute();
+            break;
+        
+        default:
+            Console.WriteLine($"Unknown command: {commandName}");
+            break;
+    }
+} catch (Exception exception)
+{
+    Console.WriteLine($"Error: {exception.Message}");
 }
