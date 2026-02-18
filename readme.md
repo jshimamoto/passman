@@ -4,11 +4,17 @@ Passman is a CLI password manager that stores encrypted login information locall
 ## Setup
 1. Clone the repo
 2. Make sure you have .NET installed
-3. Move into the `src/Passman.Cli` directory to start using passman commands
+3. Run the following commands to install the tool globally
+```shell
+dotnet build
+cd src/Passman.Cli
+dotnet pack -c Release
+dotnet tool install --global --add-source ./nupkg passman.cli
+```
 
 ## Commands
 ### Init
-Usage: `dnr init`  
+Usage: `passman init`  
 
 This is the command to initialize your database and **must be the first one** you use. This will also set the master password that you will enter for all other commands that access your database
 
@@ -25,17 +31,17 @@ example,user,password123
 ```
 
 ### Add
-Usage: `dnr add`
+Usage: `passman add`
 
 Use this to add a credential to your database
 
 ### Search
-Usage: `dnr search <arg>`
+Usage: `passman search <arg>`
 
 Use this to display credentials for a site you want to search for. It will return all matching websites that contain the string you enter
 
 ### Delete
-Usage: `dnr delete <arg>`
+Usage: `passman delete <arg>`
 
 This will search your database and return all matching sites that contain the string you entered. If there are multiple matches, it will display them. You then get to choose from among the results which you would like to delete.
 

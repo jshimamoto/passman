@@ -2,8 +2,6 @@
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Passman", "Passman\Passman.csproj", "{E7392DFD-3D82-68AF-7CCE-FF95ECF628D8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C075766F-95E8-4195-AEAA-AE3E1BA36093}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Passman.Cli", "src\Passman.Cli\Passman.Cli.csproj", "{EF0A329E-1536-4FD2-8D11-598770A051AD}"
