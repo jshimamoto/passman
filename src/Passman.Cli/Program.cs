@@ -26,6 +26,11 @@ try
             var search = new SearchCommand();
             search.Execute(commandArgs[0]);
             break;
+
+        case "delete":
+            var delete = new DeleteCommand();
+            delete.Execute(commandArgs[0]);
+            break;
         
         default:
             Console.WriteLine($"Unknown command: {commandName}");

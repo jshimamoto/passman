@@ -14,6 +14,11 @@ public class Database
         Credentials.AddRange(credentials);
     }
 
+    public void Remove(Credential credential)
+    {
+        Credentials.Remove(credential);
+    }
+
     public IEnumerable<Credential> QuerySites(string query)
     {
         return Credentials.Where(c => 

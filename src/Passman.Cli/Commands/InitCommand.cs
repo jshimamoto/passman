@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using Passman.Cli.Utils;
 using Passman.Core.Models;
 using Passman.Core.Storage;
 using Passman.Core.Utils;
@@ -29,19 +30,8 @@ public class InitCommand
 
         if (File.Exists(_dbPath))
         {
-            Console.Write("Credential database already exists. Overwrite? [y/n]: ");
-            while (true)
-            {
-                var key = Console.ReadKey();
-                if (key.Key == ConsoleKey.Y)
-                {
-                    break;
-                } else if (key.Key == ConsoleKey.N)
-                {
-                    return;
-                }
-            }
-            Console.WriteLine();
+            bool confirmation = ConfirmAction.Execute("Credential database already exists. Overwrite?");
+            if (!confirmation) return;
         }
 
         string? csvPath = null;
