@@ -4,7 +4,7 @@ Passman is a CLI password manager that stores encrypted login information locall
 ## Setup
 1. Clone the repo
 2. Make sure you have .NET installed
-3. Enter the command `cd src/Passman.Cli` to start using passman commands
+3. Move into the `src/Passman.Cli` directory to start using passman commands
 
 ## Commands
 ### Init
