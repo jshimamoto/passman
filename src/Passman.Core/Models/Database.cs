@@ -13,4 +13,12 @@ public class Database
     {
         Credentials.AddRange(credentials);
     }
+
+    public IEnumerable<Credential> QuerySites(string query)
+    {
+        return Credentials.Where(c => 
+            c.Site != null && 
+            c.Site.Contains(query, StringComparison.OrdinalIgnoreCase)
+        );
+    }
 }

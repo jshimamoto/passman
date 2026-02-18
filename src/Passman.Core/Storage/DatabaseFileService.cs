@@ -21,18 +21,24 @@ public static class DatabaseFileService
 
         var (nonce, ciphertext, tag) = AesGcmService.Encrypt(plaintext, key);
 
-        using var fs = File.Create(path);
+        var tempPath = path + ".tmp";
+        File.Copy(path, path + ".bak", overwrite: true);
+
+        using var fs = File.Create(tempPath);
         using var bw = new BinaryWriter(fs);
+        {    
+            bw.Write(Magic);
+            bw.Write(Version);
 
-        bw.Write(Magic);
-        bw.Write(Version);
+            bw.Write((byte)salt.Length);
+            bw.Write(salt);
 
-        bw.Write((byte)salt.Length);
-        bw.Write(salt);
+            bw.Write(nonce);
+            bw.Write(tag);
+            bw.Write(ciphertext);
+        }
 
-        bw.Write(nonce);
-        bw.Write(tag);
-        bw.Write(ciphertext);
+        File.Move(tempPath, path, overwrite: true);
     }
 
     public static Database LoadFile(string path, string masterPassword)
@@ -68,6 +74,7 @@ public static class DatabaseFileService
         {
             throw new Exception("Incorrect master password or corrupted database.");
         }
+
         var json = Encoding.UTF8.GetString(decryptedBytes);
         return JsonSerializer.Deserialize<Database>(json)!;
     }

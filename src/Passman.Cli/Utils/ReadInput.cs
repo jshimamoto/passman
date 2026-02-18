@@ -20,7 +20,7 @@ public static class ReadInput
                 continue;
             }
 
-            sb.Append(key.Key);
+            sb.Append(key.KeyChar);
         }
         Console.WriteLine();
 

@@ -21,6 +21,11 @@ try
             var add = new AddCommand();
             add.Execute();
             break;
+
+        case "search":
+            var search = new SearchCommand();
+            search.Execute(commandArgs[0]);
+            break;
         
         default:
             Console.WriteLine($"Unknown command: {commandName}");
