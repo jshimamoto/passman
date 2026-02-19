@@ -53,6 +53,11 @@ Usage: `passman delete <arg>`
 
 This will search your database and return all matching sites that contain the string you entered. If there are multiple matches, it will display them. You then get to choose from among the results which you would like to delete.
 
+### edit
+Usage: `passman edit <arg>`
+
+This will search your database and return all matching sites that contain the string you entered. If there are multiple matches, it will display them. You then get to choose from among the results which you would like to edit.
+
 ## About
 ### Encryption
 All sensitive data stored by Passman — including usernames and passwords — is encrypted locally to protect it from unauthorized access.
