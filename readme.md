@@ -62,7 +62,7 @@ Usage: `passman delete <arg>`
 
 This will search your database and return all matching sites that contain the string you entered. If there are multiple matches, it will display them. You then get to choose from among the results which you would like to delete.
 
-### edit
+### Edit
 Usage: `passman edit <arg>`
 
 This will search your database and return all matching sites that contain the string you entered. If there are multiple matches, it will display them. You then get to choose from among the results which you would like to edit.
