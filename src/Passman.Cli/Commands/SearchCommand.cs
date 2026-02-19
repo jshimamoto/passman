@@ -10,7 +10,7 @@ public class SearchCommand
         {
             Console.WriteLine("Please input a site name to search");
         }
-        var masterPassword = ReadInput.Execute("Enter master password: ", hidden: true);
+        var masterPassword = ReadInput.NonPrepopulated("Enter master password: ", hidden: true);
         
         var db = DatabaseFileService.LoadFile(DatabasePath.GetDefaultPath(), masterPassword);
         var matches = db.QuerySites(arg).ToList();

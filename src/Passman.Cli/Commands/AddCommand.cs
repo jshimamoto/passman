@@ -9,9 +9,9 @@ public class AddCommand
 {
     public void Execute()
     {
-        var site = ReadInput.Execute("Enter site name: ");
-        var username = ReadInput.Execute("Enter username: ");
-        var password = ReadInput.Execute("Enter password: ");
+        var site = ReadInput.NonPrepopulated("Enter site name: ");
+        var username = ReadInput.NonPrepopulated("Enter username: ");
+        var password = ReadInput.NonPrepopulated("Enter password: ");
 
         Credential cred = new Credential
         {
@@ -20,7 +20,7 @@ public class AddCommand
             Password = password
         };
 
-        var masterPassword = ReadInput.Execute("Enter master password: ", hidden: true);
+        var masterPassword = ReadInput.NonPrepopulated("Enter master password: ", hidden: true);
         var database = DatabaseFileService.LoadFile(DatabasePath.GetDefaultPath(), masterPassword);
         database.Add(cred);
         DatabaseFileService.SaveFile(DatabasePath.GetDefaultPath(), masterPassword, database);

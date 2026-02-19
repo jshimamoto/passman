@@ -31,6 +31,16 @@ try
             var delete = new DeleteCommand();
             delete.Execute(commandArgs[0]);
             break;
+
+        case "generate":
+            var generate = new GenerateCommand();
+            generate.Execute();
+            break;
+
+        case "edit":
+            var edit = new EditCommand();
+            edit.Execute(commandArgs[0]);
+            break;
         
         default:
             Console.WriteLine($"Unknown command: {commandName}");

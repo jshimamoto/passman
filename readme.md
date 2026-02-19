@@ -1,6 +1,14 @@
 # Passman
 Passman is a CLI password manager that stores encrypted login information locally on your machine
 
+## Todo
+- [X] Generate password
+- [ ] Copy to clipboard
+- [ ] Edit Command
+- [ ] Master Password session timeout
+- [ ] Help system
+- [ ] Binary release
+
 ## Setup
 1. Clone the repo
 2. Make sure you have .NET installed

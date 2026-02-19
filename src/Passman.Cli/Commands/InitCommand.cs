@@ -19,8 +19,8 @@ public class InitCommand
     public void Execute(string[] args)
     {
 
-        var pass1 = ReadInput.Execute("Set master password for database: ", hidden: true);
-        var pass2 = ReadInput.Execute("Confirm password: ", hidden: true);
+        var pass1 = ReadInput.NonPrepopulated("Set master password for database: ", hidden: true);
+        var pass2 = ReadInput.NonPrepopulated("Confirm password: ", hidden: true);
 
         if (pass1 != pass2)
         {
