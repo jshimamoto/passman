@@ -14,6 +14,13 @@ public class Database
         Credentials.AddRange(credentials);
     }
 
+    public void Update(Credential target, string newSite, string newUser, string newPass)
+    {
+        target.Site = newSite;
+        target.Username = newUser;
+        target.Password = newPass;
+    }
+
     public void Remove(Credential credential)
     {
         Credentials.Remove(credential);

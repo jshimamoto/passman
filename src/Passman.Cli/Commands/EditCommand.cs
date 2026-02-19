@@ -28,11 +28,12 @@ public class EditCommand
             var newSite = ReadInput.Prepopulated("\nSite: ", matches[indexToEdit].Site);
             var newUsername = ReadInput.Prepopulated("Username: ", matches[indexToEdit].Username);
             var newPassword = ReadInput.Prepopulated("Password: ", matches[indexToEdit].Password);
-            
-            var cred = matches[indexToEdit];
-            cred.Site = newSite;
-            cred.Username = newUsername;
-            cred.Password = newPassword;
+
+            db.Update(matches[indexToEdit], newSite, newUsername, newPassword);
+            // var cred = matches[indexToEdit];
+            // cred.Site = newSite;
+            // cred.Username = newUsername;
+            // cred.Password = newPassword;
         }
         DatabaseFileService.SaveFile(DatabasePath.GetDefaultPath(), masterPassword, db);
 
