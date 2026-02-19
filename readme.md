@@ -4,9 +4,9 @@ Passman is a CLI password manager that stores encrypted login information locall
 ## Todo
 - [X] Generate password
 - [ ] Copy to clipboard
-- [ ] Edit Command
+- [X] Edit Command
 - [ ] Master Password session timeout
-- [ ] Help system
+- [X] Help system
 - [ ] Binary release
 
 ## Setup
@@ -37,6 +37,15 @@ site,username,password
 example,user,password123
 ...
 ```
+
+### Help
+Usage: `passman help`  
+
+Use this command to get help information about all available commands
+
+| Flag | Description |  
+| --- | --- |  
+| `<command name>` | Enter the name of a command to get more detailed information |
 
 ### Add
 Usage: `passman add`

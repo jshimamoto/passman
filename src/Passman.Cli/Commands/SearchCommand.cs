@@ -1,7 +1,13 @@
+using Passman.Cli.Attributes;
 using Passman.Core.Storage;
 
 namespace Passman.Cli.Commands;
 
+[Help(
+    "search",
+    "Search a for credential in your database by site name. Returns all matches",
+    "passman search example.website.com"
+)]
 public class SearchCommand
 {
     public void Execute(string arg)

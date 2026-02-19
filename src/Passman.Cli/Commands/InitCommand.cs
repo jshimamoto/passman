@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using Passman.Cli.Attributes;
 using Passman.Cli.Utils;
 using Passman.Core.Models;
 using Passman.Core.Storage;
@@ -7,6 +8,12 @@ using Passman.Core.Utils;
 
 namespace Passman.Cli.Commands;
 
+[Help(
+    "init",
+    "Initialize your database and set the master password",
+    "passman init",
+    options: new[] {"--csv : Path of the CSV file to import credentials from (Ex: passmand init --csv /path/to/file)"}
+)]
 public class InitCommand
 {
     private readonly string _dbPath;

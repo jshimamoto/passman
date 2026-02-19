@@ -1,9 +1,15 @@
 using System.Text.RegularExpressions;
+using Passman.Cli.Attributes;
 using Passman.Cli.Utils;
 using Passman.Core.Storage;
 
 namespace Passman.Cli.Commands;
 
+[Help(
+    "delete",
+    "Delete a credential to your database. Returns all matches",
+    "passman delete example.website.com"
+)]
 public class DeleteCommand
 {
     public void Execute(string arg)

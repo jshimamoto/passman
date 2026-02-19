@@ -41,6 +41,11 @@ try
             var edit = new EditCommand();
             edit.Execute(commandArgs[0]);
             break;
+
+        case "help":
+            var help = new HelpCommand();
+            help.Execute(commandArgs);
+            break;
         
         default:
             Console.WriteLine($"Unknown command: {commandName}");

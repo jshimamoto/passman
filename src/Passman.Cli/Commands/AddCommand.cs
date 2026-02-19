@@ -1,10 +1,16 @@
 using System.Text;
 using System.Text.Json;
+using Passman.Cli.Attributes;
 using Passman.Core.Models;
 using Passman.Core.Storage;
 
 namespace Passman.Cli.Commands;
 
+[Help(
+    "add",
+    "Add a credential to your database",
+    "passman add"
+)]
 public class AddCommand
 {
     public void Execute()

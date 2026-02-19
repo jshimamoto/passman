@@ -1,9 +1,15 @@
+using Passman.Cli.Attributes;
 using Passman.Cli.Utils;
 using Passman.Core.Models;
 using Passman.Core.Storage;
 
 namespace Passman.Cli.Commands;
 
+[Help(
+    "edit",
+    "Edit a credential to your database. Returns all matches",
+    "passman edit example.website.com"
+)]
 public class EditCommand
 {
     public void Execute(string arg)
