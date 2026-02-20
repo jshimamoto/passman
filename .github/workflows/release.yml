@@ -1,0 +1,52 @@
+name: Build and Release Passman
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        runtime: [linux-x64, win-x64, osx-x64, osx-arm64]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - run: dotnet restore
+
+      - name: Publish
+        run: |
+          dotnet publish src/Passman.Cli/Passman.Cli.csproj \
+            -c Release \
+            -r ${{ matrix.runtime }} \
+            --self-contained true \
+            /p:PublishSingleFile=true \
+            -o ./publish/${{ matrix.runtime }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: passman-${{ matrix.runtime }}
+          path: publish/${{ matrix.runtime }}
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create release
+        run: gh release create ${{ github.ref_name }} artifacts/** --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

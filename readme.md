@@ -10,6 +10,7 @@ Passman is a CLI password manager that stores encrypted login information locall
 - [ ] Binary release
 
 ## Setup
+### Use with .NET Runtime
 1. Clone the repo
 2. Make sure you have .NET installed
 3. Run the following commands to install the tool globally
@@ -19,6 +20,9 @@ cd src/Passman.Cli
 dotnet pack -c Release
 dotnet tool install --global --add-source ./nupkg passman.cli
 ```
+
+### Use with binary release
+
 
 ## Commands
 ### Init
