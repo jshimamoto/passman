@@ -49,6 +49,13 @@ jobs:
         with:
           path: artifacts
 
+      - name: Zip binaries
+        run: |
+          cd artifacts
+          for d in */ ; do
+            zip -r "${d%/}.zip" "$d"
+          done
+
       - name: Create release
         run: gh release create ${{ github.ref_name }} artifacts/** --generate-notes
         env:
